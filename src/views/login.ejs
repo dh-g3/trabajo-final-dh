@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+</head>
+<body>
+    <% if (loggedUser) { %>
+        <h1>Bienvenido <%= loggedUser %></h1>
+    <% } else { %>
+        <h1>Bienvenido visitante!</h1>
+    <% } %>
+    <a href="/register">Crear un nuevo usuario</a>
+    <% if (loggedUser) { %>
+        <h2>Iniciar sesión con otra cuenta</h2>
+    <% } else { %>
+        <h2>Iniciar sesión</h2>
+    <% } %>
+    <form action="/login" method="post">
+        <label for="name">Ingrese su nombre</label>
+        <input type="text" name="name" id="name"><br>
+        <label for="password">Ingrese su contraseña</label>
+        <input type="password" name="password" id="password"><br>
+        <button type="reset">Borrar</button>
+        <button type="submit">Iniciar sesión</button><br>
+    </form>
+    <% if (loggedUser) { %>
+    <h2>Edita tu usuario</h2>
+    <form action="/login/edit" method="post">
+        <label for="newname">Ingrese su nuevo nombre</label>
+        <input type="text" name="newname" id="newname"><br>
+        <label for="newpassword">Ingrese su nueva contraseña</label>
+        <input type="password" name="newpassword" id="newpassword"><br>
+        <button type="reset">Borrar</button>
+        <button type="submit">Editar usuario</button>
+    </form>
+    <h2>Elimina tu usuario</h2>
+    <form action="/login/delete" method="post">
+        <button type="submit" name="deleteuser" id="deleteuser">Eliminar usuario</button>
+    </form>
+    <h2>Cerrar sesión</h2>
+    <form action="/login/logout" method="post">
+        <button type="submit" name="logout" id="logout">Cerrar sesión</button>
+    </form>
+    <% } %>
+</body>
+</html>
