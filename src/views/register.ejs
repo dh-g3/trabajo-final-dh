@@ -11,9 +11,31 @@
     <a href="/login">Iniciar sesión</a>
     <form action="/register" method="post">
         <label for="name">Ingrese su nombre</label>
-        <input type="text" name="name" id="name"><br>
+        <!-- Si hay datos que llegan por body conservarlos y ponerlos en value -->
+        <input 
+            type="text"
+            name="name"
+            id="name"
+            value="<%= locals.oldData ? oldData.name : null %>"
+        ><br>
+        <!-- Si llegan errores imprimir abajo -->
+        <% if (locals.errors && errors.name) { %>
+            <div style="color:red">
+                <%= errors.name.msg %>
+            </div>
+        <% } %>
         <label for="password">Ingrese su contraseña</label>
-        <input type="password" name="password" id="password"><br>
+        <input 
+            type="password" 
+            name="password" 
+            id="password"
+            value="<%= locals.oldData ? oldData.password : null %>"
+        ><br>
+        <% if (locals.errors && errors.password) { %>
+            <div style="color:red">
+                <%= errors.password.msg %>
+            </div>
+        <% } %>
         <button type="reset">Borrar</button>
         <button type="submit">Crear usuario</button>
     </form>

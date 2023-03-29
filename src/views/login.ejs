@@ -20,9 +20,22 @@
     <% } %>
     <form action="/login" method="post">
         <label for="name">Ingrese su nombre</label>
-        <input type="text" name="name" id="name"><br>
+        <input type="text" name="name" id="name" value="<%= locals.oldData ? oldData.name : null %>"><br>
+        <% if (locals.errors && errors.name) { %>
+            <div style="color:red">
+                <%= errors.name.msg %>
+            </div>
+        <% } %>
         <label for="password">Ingrese su contraseña</label>
-        <input type="password" name="password" id="password"><br>
+        <input type="password" name="password" id="password" value="<%= locals.oldData ? oldData.password : null %>"><br>
+        <% if (locals.errors && errors.password) { %>
+            <div style="color:red">
+                <%= errors.password.msg %>
+            </div>
+        <% } %>
+        <% if (locals.notMatch) { %>
+            <p style="color: red"><%= notMatch %></p>
+        <% } %>
         <button type="reset">Borrar</button>
         <button type="submit">Iniciar sesión</button><br>
     </form>
@@ -31,8 +44,18 @@
     <form action="/login/edit" method="post">
         <label for="newname">Ingrese su nuevo nombre</label>
         <input type="text" name="newname" id="newname"><br>
+        <% if (locals.errors && errors.newname) { %>
+            <div style="color:red">
+                <%= errors.newname.msg %>
+            </div>
+        <% } %>
         <label for="newpassword">Ingrese su nueva contraseña</label>
         <input type="password" name="newpassword" id="newpassword"><br>
+        <% if (locals.errors && errors.newpassword) { %>
+            <div style="color:red">
+                <%= errors.newpassword.msg %>
+            </div>
+        <% } %>
         <button type="reset">Borrar</button>
         <button type="submit">Editar usuario</button>
     </form>
