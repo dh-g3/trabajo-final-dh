@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://icons.veryicon.com/png/o/education-technology/test-website-linear-icon/user-147.png">
     <title>Iniciar sesión</title>
 </head>
 <body>
@@ -43,14 +44,14 @@
     <h2>Edita tu usuario</h2>
     <form action="/login/edit" method="post">
         <label for="newname">Ingrese su nuevo nombre</label>
-        <input type="text" name="newname" id="newname"><br>
+        <input type="text" name="newname" id="newname" value="<%= locals.oldData ? oldData.newname : null %>"><br>
         <% if (locals.errors && errors.newname) { %>
             <div style="color:red">
                 <%= errors.newname.msg %>
             </div>
         <% } %>
         <label for="newpassword">Ingrese su nueva contraseña</label>
-        <input type="password" name="newpassword" id="newpassword"><br>
+        <input type="password" name="newpassword" id="newpassword" value="<%= locals.oldData ? oldData.newpassword : null %>"><br>
         <% if (locals.errors && errors.newpassword) { %>
             <div style="color:red">
                 <%= errors.newpassword.msg %>
